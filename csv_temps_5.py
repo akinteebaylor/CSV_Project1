@@ -5,14 +5,17 @@ def main():
     
     plotaxis=['axis','axis1']                                                   
     fig, (plotaxis[0],plotaxis[1]) = plt.subplots(2,1)                          
-    fig.suptitle('Temperature Comparison between SITKA AIRPORT, AK US and DEATH VALLEY, CA US', fontsize=16)    
-    
+    #fig.suptitle('Temperature Comparison between SITKA AIRPORT, AK US and DEATH VALLEY, CA US', fontsize=16)    
+    names=[]
     i=0
     for file in filenames:
         file_highs,file_lows, dates,filenam = fileplot(file)
         tee(plotaxis[i],dates,file_lows,file_highs,filenam)    
         fig.autofmt_xdate()
         i+=1
+        names.append(filenam)
+    chart_title = 'Temperature Comparison between ' + names[0] + ' and ' + names[1]
+    fig.suptitle(chart_title, fontsize=16) 
     plt.show()
 
 #Function to Extract data to plot from each file
